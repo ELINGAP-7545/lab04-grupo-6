@@ -1,6 +1,8 @@
 # lab04
 BCD2SSeg
 
+EDWIN DAVID GIRALDO CODIGO: 39910
+
 # Introducción
 
 En este paquete de trabajo los estudiantes deben familiarizarce con el  framework de trabajo de la FPGA seleccionado, a partir de la descripción dedecodificador BCD2SSeg
@@ -91,3 +93,6 @@ En el paquete de trabajo [WP04](https://classroom.github.com/g/zCBwHHKX)   esta 
 * Modificar o Añadir los bloques necesarios para que la visualización sea en representación Decimal y no Hexadecimal.
 * Realice la respectiva publicación del repositorio antes de la fecha dada con todo el código  fuente 
 
+# SIMULACIÓN 7 SEG HEXADECIMAL
+
+![7SEGEMENTOSHEXA](https://github.com/ELINGAP-7545/lab04-grupo-6/blob/master/imagenes/7%20segmentos%20hexa.PNG)
