@@ -5,7 +5,7 @@ EDWIN DAVID GIRALDO CODIGO: 39910
 
 # Introducción
 
-En esta oportunidad analizaremos el código top y testbench correspondiente a la visualización de números Hexadecimales  y binarios en un display de 7 segmentos de Ánodo común, usando como guía los laboratorios anteriores en Quartus.   
+En esta oportunidad analizaremos el código top y testbench correspondiente a la visualización de números Hexadecimales  y binarios en un display de 7 segmentos de Ánodo común, usando como guía los laboratorios anteriores en Quartus. Adicionalmente utilizaremos la aplicacion web y de escritorio  Github una aplicación muy util a la hora de manejar repositorios y exponer nuestros avances.    
 
 ## Diseño BCD-7seg
 
@@ -218,6 +218,7 @@ endmodule
 # Testbench visualización dinamica 4 display´s
 
 ```verilog
+`timescale 1ns / 1ps
 module testbench; // nombre del modulo testbench
 
 	// Inputs
@@ -244,7 +245,7 @@ module testbench; // nombre del modulo testbench
 		rst = 1;             // reset en "1"
 		#10 rst =0;          // esperamos 10ns y ponemos reset en "0"
 		
-		num = 16'h4321; #10;  // cargamos el número que queremos visualizar
+		num = 16'h4321; #10;  // cargamos el número que queremos visualizar y esperamos 10ns
         
 
 	end
@@ -256,21 +257,6 @@ endmodule
 
 ```
 
-
-# Entregables
-
-Una vez clone el repositorio y lea la anterior guia, realice lo siguiente:
-
-En el paquete de trabajo [WP04](https://classroom.github.com/g/zCBwHHKX)   esta la descripción del hardware que se implementa para visualizar un número hexadecimal de 32 bits en un display  y en 4 display de 7 segmentos.
-
-* Comprenda cada línea del código HDL de los  archivos que se encuentra en la carpera src. Si cree necesario realice los respectivos comentarios en el mismo archivo y comente
-* Realice en quartus la simulación para el BCD-7seg, analice los resultados.
-* Cree el nuevo proyecto HDL para Visualización Dinámica 4 Display, tomando como base los archivos dados.
-* Creer el archivo testbench.v
-* Genera la simulación, Revise que el sistema funciona como usted lo esperaba. Realice lo comentarios necesarios en el archivo README.md.
-* Modificar o Añadir los bloques necesarios para que la visualización sea en representación Decimal y no Hexadecimal.
-* Realice la respectiva publicación del repositorio antes de la fecha dada con todo el código  fuente 
-
-# SIMULACIÓN 7 SEG HEXADECIMAL
+# Simulación dinamica 4 display´s
 
 ![7SEGEMENTOSHEXA](https://github.com/ELINGAP-7545/lab04-grupo-6/blob/master/imagenes/7%20segmentos%20hexa.PNG)
