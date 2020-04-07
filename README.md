@@ -55,7 +55,7 @@ En este sentido, se adiciona al HDL de siete segmentos 4 señales de control par
 module BCDtoSSeg (BCD, SSeg, an); //asignamos el modúlo al igual que las variables que utilizaremos 
 
   input [3:0] BCD; // entrada BCD de 4 bits 
-  output reg [0:6] SSeg; // registro de salida de los 7 bots de cada segmento
+  output reg [0:6] SSeg; // registro de salida de los 7 bits de cada segmento
   output [3:0] an; // salida de anodo para activacion de display
 
 assign an=4'b1110;// asignamos el display que activaremos el cual en este caso es el 1 por medio de un "0"
