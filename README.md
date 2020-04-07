@@ -51,7 +51,7 @@ En este sentido, se adiciona al HDL de siete segmentos 4 señales de control par
 
 # Verilog Visualización 1 Display
 
-module BCDtoSSeg (BCD, SSeg, an); //asignamos el modúlo al igual que las variables que utilizaremos 
+`module BCDtoSSeg (BCD, SSeg, an); //asignamos el modúlo al igual que las variables que utilizaremos 
 
   input [3:0] BCD; // entrada BCD de 4 bits 
   output reg [0:6] SSeg; // registro de salida de 6 bits 
