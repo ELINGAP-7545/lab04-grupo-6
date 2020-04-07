@@ -1,30 +1,29 @@
-# lab04
+# lab04-grupo 6
 BCD2SSeg
 
 EDWIN DAVID GIRALDO CODIGO: 39910
 
 # Introducción
 
-En este paquete de trabajo los estudiantes deben familiarizarce con el  framework de trabajo de la FPGA seleccionado, a partir de la descripción dedecodificador BCD2SSeg
-
-Para este paquete de trabajo, deben estar inscrito en un grupo y clonar la información del siguiente link [WP04](https://classroom.github.com/g/zCBwHHKX). Una vez aceptado el repositorio debe descargarlo en su computador, para ello debe clonar el mismo. Si no sabe cómo hacerlo revise la metodología de trabajo, donde se explica el proceso
-
-Las documentación deben estar diligencia en el archivo README.md del repositorio clonado.
-
-Una vez clone el repositorio, realice lo siguiente:
+En esta oportunidad analizaremos el código top y testbench correspondiente a la visualización de números Hexadecimales  y binarios en un display de 7 segmentos de Ánodo común, usando como guía los laboratorios anteriores en Quartus.   
 
 ## Diseño BCD-7seg
 
-En este punto, ya se estar en la capacidad de describir e implementar Hardware sencillo, con la ayuda de herramientas computaciones.  y como se vio en los dos ejemplos anteriores, la suma se visualiza en leds,  algo que es difícil para  validad visualmente la respuesta. Por lo tanto, es aconsejable tener una visualización mas acorde a las necesidades, como por ejemplo  visualizar los resultados en el [ Display 7 Segmentos](https://en.wikipedia.org/wiki/Seven-segment_display) 
+Para poder avanzar primero debemos conocer un display de 7 segmentos de ánodo común, el cual es una forma de representar caracteres en equipos electrónicos. Está compuesto de siete segmentos que se pueden encender o apagar individualmente. Cada segmento tiene la forma de una pequeña línea. Se podría comparar a escribir números con cerillas o fósforos de madera Display 7 Segmentos](https://en.wikipedia.org/wiki/Seven-segment_display) 
 
-En este Ejercicio se propone que realicen el diseño, sintentización e implementación del Display de 7 sergmentos, el cual permita visualizar números  en representación hexadecimal (0x0 a 0xF).  En el siguiente gráfico, se observa cual es el funcionamiento deseado del display:
+En los de tipo de ánodo común, todos los ánodos de los ledes o segmentos están unidos internamente a una patilla común que debe ser conectada a potencial positivo (nivel “1”). El encendido de cada segmento individual se realiza aplicando potencial negativo (nivel “0”) por la patilla correspondiente a través de una resistencia que limite el paso de la corriente.
 
 
 ![gif display](https://upload.wikimedia.org/wikipedia/commons/2/2b/Seven_segment_display-animated.gif)
 
 Imagen tomada de [User:Guam + Various](https://commons.wikimedia.org/wiki/File:Seven_segment_display-animated.gif)
 
-A continuación se presentan los pasos recomendados para el ejercicio:
+Cada uno de los segmentos que forman la pantalla están marcados con siete primeras letras del alfabeto ('a'-'g'), y se montan de forma que permiten activar cada segmento por separado, consiguiendo formar cualquier dígito numérico. A continuación se muestran algunos ejemplos:
+
+Si se activan o encienden todos los segmentos se forma el número "8".
+Si se activan sólo los segmentos: "a, b, c, d, e, f," se forma el número "0".
+Si se activan sólo los segmentos: "a, b, g, e, d," se forma el número "2".
+Si se activan sólo los segmentos: "b, c, f, g," se forma el número "4".
 
 **Definir la caja funcional del BCD**: 
 
@@ -35,31 +34,12 @@ Si observa la caja negra/ funcional  ademas  de la salidad de 7 segmentos contie
 
 **Definir la descripción Funcional**
 
-Para ello recuerde  que puede hacer uso, bien sea, de las tablas de verdad o de la descripción algorítmica del BCD a  siete segmentos. Recuerde que cada Segmento es una salida  del diseño. Ejemplo, si desea  visualizar el número **1**, la salida seria  de `Sseg es 0110000`. observe la gráfica a continuación, para generar las salidas acorde al número de entrada.
+Para poder generar nuestro codigo adecuadamente lo primero que debemos hacer es definir nuestra unidad funcional que puede hacer uso, bien sea, de las tablas de verdad o de la descripción algorítmica del BCD a  siete segmentos. Recuerde que cada Segmento es una salida  del diseño. Ejemplo, si desea  visualizar el número **1**, la salida seria  de `Sseg es 0110000`. observe la gráfica a continuación, para generar las salidas acorde al número de entrada.
 
 ![sseg](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/7_segment_display_labeled.svg/1024px-7_segment_display_labeled.svg.png)
 
 
-* Definir en  HDL el comportamiento del sistema ** :  Use Verilog para hacer la descripción funcional
-**simulación de Sistema** :  Use el Testbench para este fin.
-
-
 # Ejercicio - Visualización Dinámica 4 Display
-
-
-Si el diseño digital de algún sistema se requiere mas de un display de 7 segmentos, es necesario  generar una visualización tal que sea necesario el menor número de pines para conectar todos los display en con la FPGA.
-
-Por ahora, se ha visualizado el números en un solo display de 7 segmentos. Pero en la mayoría de los casos, los 7 pines de los cátodos están inter-conectados entre cada display, como se observa en la figura:
-
-![conex](https://github.com/Fabeltranm/SPARTAN6-ATMEGA-MAX5864/blob/master/lab/lab04_display_7segx4/doc/conex.png)
-
-Por lo tanto, se debe  realizar una multiplexación  entre los Anodos de cada Display, con el fin de visualizar en cada display un número diferente.  En otras palabras, en cada instante de tiempo, solo un display se encuentra activo. En este sentido, se debe garantizar que el destello en la visualización entre cada display no se perciba. Para ello, cada display debe activarse máximo cada 16 ms.
-
-Visualmente esto se entiende mas con la siguiente simulación, donde se desea visualizar el  número en representación hexadecimal `0x4321`:
-
-
-![diagrama](https://github.com/Fabeltranm/SPARTAN6-ATMEGA-MAX5864/blob/master/lab/lab04_display_7segx4/doc/4sseg.jpg)
-
 
 ## Diagrama Caja negra 
 
