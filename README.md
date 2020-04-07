@@ -39,7 +39,7 @@ Para poder generar nuestro codigo adecuadamente lo primero que debemos hacer es 
 ![sseg](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/7_segment_display_labeled.svg/1024px-7_segment_display_labeled.svg.png)
 
 
-# Ejercicio - Visualización Dinámica 4 Display
+# Ejercicio - Visualización Dinámica 1 Display
 
 ## Diagrama Caja negra 
 
@@ -134,6 +134,14 @@ endmodule
 # SIMULACIÓN
 
 ![gif display](https://github.com/ELINGAP-7545/lab04-grupo-6/blob/master/imagenes/SIMULACION%20ARQUI.jpg)
+
+# Ejercicio - Visualización Dinámica 4 Display´s
+
+A continuación procederemos a avanzar en nuestro proyecto y vamos a visualizar en 4 Display´s , es necesario generar una visualización tal que sea necesario el menor número de pines para conectar todos los display en con la FPGA.
+
+Por ahora, se ha visualizado el números en un solo display de 7 segmentos. Pero en la mayoría de los casos, los 7 pines de los cátodos están inter-conectados entre cada display, como se observa en la figura: 
+
+![estructural](https://github.com/Fabeltranm/SPARTAN6-ATMEGA-MAX5864/blob/master/lab/lab04_display_7segx4/doc/conex.png)
 
 ## Diagrama Estructural 
 
