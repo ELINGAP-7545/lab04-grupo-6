@@ -49,6 +49,87 @@ Como siempre, antes de realizar la descripción del hardware se debe diseñar la
 
 En este sentido, se adiciona al HDL de siete segmentos 4 señales de control para el LCD, llamadas An. cada bit de la señal `An` debe ser modificado en el tiempo, con el fin de activar solo un display.  
 
+# Verilog Visualización 1 Display
+
+module BCDtoSSeg (BCD, SSeg, an); //asignamos el modúlo al igual que las variables que utilizaremos 
+
+  input [3:0] BCD; // entrada BCD de 4 bits 
+  output reg [0:6] SSeg; // registro de salida de 6 bits 
+  output [3:0] an; // salida de anodo para activacion de display
+
+assign an=4'b1110;// asignamos en binario el número que sera cargado al ánodo
+
+
+always @ ( * ) begin // definimos el inicio del programa al igual que un continuo funcionamiento
+  case (BCD) // casos que sucederan en la entrada BCD
+   4'b0000: SSeg = 7'b0000001; // "0"  conversión para activacion de los segmentos del display por medio de 0 
+	4'b0001: SSeg = 7'b1001111; // "1"  conversión para activacion de los segmentos del display por medio de 0
+	4'b0010: SSeg = 7'b0010010; // "2" conversión para activacion de los segmentos del display por medio de 0
+	4'b0011: SSeg = 7'b0000110; // "3" conversión para activacion de los segmentos del display por medio de 0
+	4'b0100: SSeg = 7'b1001100; // "4" conversión para activacion de los segmentos del display por medio de 0
+	4'b0101: SSeg = 7'b0100100; // "5" conversión para activacion de los segmentos del display por medio de 0
+	4'b0110: SSeg = 7'b0100000; // "6" conversión para activacion de los segmentos del display por medio de 0
+	4'b0111: SSeg = 7'b0001111; // "7" conversión para activacion de los segmentos del display por medio de 0
+	4'b1000: SSeg = 7'b0000000; // "8"  conversión para activacion de los segmentos del display por medio de 0
+	4'b1001: SSeg = 7'b0000100; // "9" conversión para activacion de los segmentos del display por medio de 0
+   4'ha: SSeg = 7'b0001000;  // "a" conversión para activacion de los segmentos del display por medio de 0
+   4'hb: SSeg = 7'b1100000; // "b" conversión para activacion de los segmentos del display por medio de 0
+   4'hc: SSeg = 7'b0110001; // "c" conversión para activacion de los segmentos del display por medio de 0
+   4'hd: SSeg = 7'b1000010; // "d" conversión para activacion de los segmentos del display por medio de 0
+   4'he: SSeg = 7'b0110000; // "f" conversión para activacion de los segmentos del display por medio de 0
+   4'hf: SSeg = 7'b0111000; // "g" conversión para activacion de los segmentos del display por medio de 0
+    default:
+    SSeg = 0;     // ponemos Sseg en 0
+  endcase
+end
+
+endmodule
+
+
+
+# TESTBENCH
+
+`timescale 1ns / 1ps // Escala de tiempo en la cual se visualizara la simulación 
+
+
+module BCDtoSSeg_TB; // llamamos el modulo de Testbench
+
+	// Inputs
+	reg [3:0] BCD; // asignamos la entrada BCD
+
+	// Outputs
+	wire [6:0] SSeg; // asignamos la salida
+
+	// Instantiate the Unit Under Test (UUT)
+	BCDtoSSeg uut (
+		.BCD(BCD), 
+		.SSeg(SSeg)
+	); // instanciamos el modulo principal llamando las partes que necesitamos y el puerto donde se ubican
+
+	initial begin  // damos la condicion inicial y planteamos los bloques y casos que usaremos del BCD del modulo Top
+
+		BCD = 0; #10;
+		BCD = 1; #10;
+		BCD = 2; #10;
+		BCD = 3; #10;
+		BCD = 4; #10;
+		BCD = 5; #10;
+		BCD = 6; #10;
+		BCD = 7; #10;
+		BCD = 8; #10;
+		BCD = 9; #10;
+
+	end
+
+   initial begin: TEST_CASE                                     
+     $dumpfile("BCDtoSSeg_TB.vcd");        // donde quedara guardado el archivo
+     #(200) $finish;
+   end
+
+endmodule
+
+
+
 ## Diagrama Estructural 
 
 ![estructural](https://github.com/Fabeltranm/SPARTAN6-ATMEGA-MAX5864/blob/master/lab/lab04_display_7segx4/doc/display_7segx4_Diag_Estructural.jpg)
