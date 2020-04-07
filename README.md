@@ -89,7 +89,7 @@ endmodule // finalizamos el modulo
 ```
 
 
-# TESTBENCH
+# Testbench
 ```verilog
 
 `timescale 1ns / 1ps // Escala de tiempo en la cual se visualizara la simulación 
@@ -132,7 +132,7 @@ module BCDtoSSeg_TB; // llamamos el modulo de Testbench
 endmodule
 
 ```
-# SIMULACIÓN
+# Simulación
 
 ![gif display](https://github.com/ELINGAP-7545/lab04-grupo-6/blob/master/imagenes/SIMULACION%20ARQUI.jpg)
 
@@ -215,7 +215,7 @@ end
 
 endmodule
 ```
-# TESTBENCH VISUALIZACIÓN DINAMICA 4 DISPLAY´S
+# Testbench visualización dinamica 4 display´s
 
 ```verilog
 module testbench; // nombre del modulo testbench
