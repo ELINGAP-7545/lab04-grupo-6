@@ -55,10 +55,10 @@ En este sentido, se adiciona al HDL de siete segmentos 4 señales de control par
 module BCDtoSSeg (BCD, SSeg, an); //asignamos el modúlo al igual que las variables que utilizaremos 
 
   input [3:0] BCD; // entrada BCD de 4 bits 
-  output reg [0:6] SSeg; // registro de salida de 6 bits 
+  output reg [0:6] SSeg; // registro de salida de los 7 bots de cada segmento
   output [3:0] an; // salida de anodo para activacion de display
 
-assign an=4'b1110;// asignamos en binario el número que sera cargado al ánodo
+assign an=4'b1110;// asignamos el display que activaremos el cual en este caso es el 1 por medio de un "0"
 
 
 always @ ( * ) begin // definimos el inicio del programa al igual que un continuo funcionamiento
@@ -81,10 +81,10 @@ always @ ( * ) begin // definimos el inicio del programa al igual que un continu
    4'hf: SSeg = 7'b0111000; // "g" conversión para activacion de los segmentos del display por medio de 0
     default:
     SSeg = 0;     // ponemos Sseg en 0
-  endcase
-end
+  endcase   // terminamos los casos
+end 
 
-endmodule
+endmodule // finalizamos el modulo
 ```
 
 
@@ -97,34 +97,34 @@ endmodule
 module BCDtoSSeg_TB; // llamamos el modulo de Testbench
 
 	// Inputs
-	reg [3:0] BCD; // asignamos la entrada BCD
+	reg [3:0] BCD; // asignamos el registro de entrada BCD 
 
 	// Outputs
-	wire [6:0] SSeg; // asignamos la salida
+	wire [6:0] SSeg; // asignamos la salida de los 7 segmentos
 
 	// Instantiate the Unit Under Test (UUT)
 	BCDtoSSeg uut (
 		.BCD(BCD), 
 		.SSeg(SSeg)
-	); // instanciamos el modulo principal llamando las partes que necesitamos y el puerto donde se ubican
+	); // instanciamos el modulo principal describiendo las variables que necesitamos y el puerto donde se ubican
 
 	initial begin  // damos la condicion inicial y planteamos los bloques y casos que usaremos del BCD del modulo Top
 
-		BCD = 0; #10;
-		BCD = 1; #10;
-		BCD = 2; #10;
-		BCD = 3; #10;
-		BCD = 4; #10;
-		BCD = 5; #10;
-		BCD = 6; #10;
-		BCD = 7; #10;
-		BCD = 8; #10;
-		BCD = 9; #10;
+		BCD = 0; #10; // número que se visualizara y espera de 10ns por medio del #10 
+		BCD = 1; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 2; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 3; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 4; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 5; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 6; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 7; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 8; #10; // número que se visualizara y espera de 10ns por medio del #10
+		BCD = 9; #10; // número que se visualizara y espera de 10ns por medio del #10
 
 	end
 
    initial begin: TEST_CASE                                     
-     $dumpfile("BCDtoSSeg_TB.vcd");        // donde quedara guardado el archivo
+     $dumpfile("BCDtoSSeg_TB.vcd");        // indicación donde quedara guardado el archivo
      #(200) $finish;
    end
 
