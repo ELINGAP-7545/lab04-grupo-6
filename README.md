@@ -161,6 +161,61 @@ Se evidencia que se deben construir cuatro módulos  básicos, de los cuales uno
 * Selector de Ánodo: Sincronizado con la frecuencia  que genera el divisor, cambia en cada instante de tiempo el  ánodo, se puede ver como un registro de desplazamiento del bit 0 `1110 1101 1011 0111`
 * Selector de Datos: dependiendo del ánodo activado, activa los datos correspondientes.
 
+# Verilog Visualización 4 Display´s
+
+```verilog
+`timescale 1ns / 1ps // Escala de tiempo en la cual se visualizara la simulación
+module display(  // nuevo modulo de display 
+    input [15:0] num, // nueva variable de entrada de los números hexadecimal
+    input clk,        // entrada de reloj
+    output [0:6] sseg,//salida de los 7 segmentos correspondiente al display
+    output reg [3:0] an, // registro de salida de ánodo para la activación del display debe ser un registro ya que ahora se activaran 4
+	 input rst,  // entrada de reset
+	 output led // salida de led
+    );
+
+
+
+reg [3:0]bcd=0;               // registo de 4 bits para el número a visualizar
+//wire [15:0] num=16'h4321;   // conector de hexadecimal y asignación del número a visualizar con num=
+ 
+BCDtoSSeg bcdtosseg(.BCD(bcd), .SSeg(sseg)); // instanciamiento del codigo de BCD hecho anteriormente 
+
+reg [26:0] cfreq=0;  // variable de registro para el divisor de frecuencia para sincronizar con la activación de cada display
+wire enable;         // conector enable
+
+// Divisor de frecuecia
+
+assign enable = cfreq[16];  // asiganmos la activacion del enable con un divisor de frecuencia de 16 para el cambio entre display´s
+assign led =enable;         // activamos la salida de led
+always @(posedge clk) begin // definimos el inicio del programa y su continuo funcionamiento siempre que el reloj  tenga un posedge
+  if(rst==1) begin          // si reset es = 1 
+		cfreq <= 0; // bloqueamos la frecuencia en 0
+	end else begin     // si no iniciamos
+		cfreq <=cfreq+1; // y aumentamos la frecuencia en 1
+	end
+end
+// desplazamiento de anodo para activación de lso  display´s
+reg [1:0] count =0;           // registro de conteo 
+always @(posedge enable) begin // siempre que el posedge se encuentre habilitado iniciamos 
+		if(rst==1) begin // si reset es = a 1 iniciamos
+			count<= 0; // bloqueamos el contador en 0
+			an<=4'b1111; // y apagamos todos los display´s con 1
+		end else begin // si no
+			count<= count+1; // aumentamos el contador en 1
+			an<=4'b1101; // y activamos el display
+			case (count) // especificamos los casos en el conteo
+				2'h0: begin bcd <= num[3:0];   an<=4'b1110; end // encendemos el primer display con los bits de [3:0] 
+				2'h1: begin bcd <= num[7:4];   an<=4'b1101; end // encendemos el segundo display con los bits de [7:4]
+				2'h2: begin bcd <= num[11:8];  an<=4'b1011; end // encendemos el tercer display con los bits de [11:8]
+				2'h3: begin bcd <= num[15:12]; an<=4'b0111; end // encendemos el cuarto display con los bits de [15:12]
+			endcase
+		end
+end
+
+endmodule
+```
+
 # Entregables
 
 Una vez clone el repositorio y lea la anterior guia, realice lo siguiente:
