@@ -9,7 +9,8 @@ En esta oportunidad analizaremos el código top y testbench correspondiente a la
 
 ## Diseño BCD-7seg
 
-Para poder avanzar primero debemos conocer un display de 7 segmentos de ánodo común, el cual es una forma de representar caracteres en equipos electrónicos. Está compuesto de siete segmentos que se pueden encender o apagar individualmente. Cada segmento tiene la forma de una pequeña línea. Se podría comparar a escribir números con cerillas o fósforos de madera Display 7 Segmentos](https://en.wikipedia.org/wiki/Seven-segment_display) 
+Para poder avanzar primero debemos conocer un display de 7 segmentos de ánodo común, el cual es una forma de representar caracteres en equipos electrónicos. Está compuesto de siete segmentos que se pueden encender o apagar individualmente. Cada segmento tiene la forma de una pequeña línea. Se podría comparar a escribir números con cerillas o fósforos de madera. 
+![Display 7 Segmentos](https://en.wikipedia.org/wiki/Seven-segment_display) 
 
 En los de tipo de ánodo común, todos los ánodos de los ledes o segmentos están unidos internamente a una patilla común que debe ser conectada a potencial positivo (nivel “1”). El encendido de cada segmento individual se realiza aplicando potencial negativo (nivel “0”) por la patilla correspondiente a través de una resistencia que limite el paso de la corriente.
 
@@ -25,7 +26,7 @@ Si se activan sólo los segmentos: "a, b, c, d, e, f," se forma el número "0".
 Si se activan sólo los segmentos: "a, b, g, e, d," se forma el número "2".
 Si se activan sólo los segmentos: "b, c, f, g," se forma el número "4".
 
-**Definir la caja funcional del BCD**: 
+**Diagrama Estructural 1 Display**: 
 
 ![bcd_black](https://github.com/Fabeltranm/SPARTAN6-ATMEGA-MAX5864/blob/master/lab/lab03-BCD2SSeg/doc/BCD2SSeg.jpg)
 
@@ -143,7 +144,7 @@ Por ahora, se ha visualizado el números en un solo display de 7 segmentos. Pero
 
 ![estructural](https://github.com/Fabeltranm/SPARTAN6-ATMEGA-MAX5864/blob/master/lab/lab04_display_7segx4/doc/conex.png)
 
-## Diagrama Estructural 
+## Diagrama Estructural 4 Display´s
 
 ![estructural](https://github.com/Fabeltranm/SPARTAN6-ATMEGA-MAX5864/blob/master/lab/lab04_display_7segx4/doc/display_7segx4_Diag_Estructural.jpg)
 
