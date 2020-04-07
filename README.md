@@ -51,7 +51,8 @@ En este sentido, se adiciona al HDL de siete segmentos 4 señales de control par
 
 # Verilog Visualización 1 Display
 
-`module BCDtoSSeg (BCD, SSeg, an); //asignamos el modúlo al igual que las variables que utilizaremos 
+```verilog
+module BCDtoSSeg (BCD, SSeg, an); //asignamos el modúlo al igual que las variables que utilizaremos 
 
   input [3:0] BCD; // entrada BCD de 4 bits 
   output reg [0:6] SSeg; // registro de salida de 6 bits 
@@ -84,10 +85,11 @@ always @ ( * ) begin // definimos el inicio del programa al igual que un continu
 end
 
 endmodule
-
+```
 
 
 # TESTBENCH
+```verilog
 
 `timescale 1ns / 1ps // Escala de tiempo en la cual se visualizara la simulación 
 
@@ -128,7 +130,7 @@ module BCDtoSSeg_TB; // llamamos el modulo de Testbench
 
 endmodule
 
-
+```
 
 ## Diagrama Estructural 
 
