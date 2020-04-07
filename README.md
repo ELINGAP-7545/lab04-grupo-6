@@ -131,6 +131,9 @@ module BCDtoSSeg_TB; // llamamos el modulo de Testbench
 endmodule
 
 ```
+# SIMULACIÓN
+
+![gif display](https://github.com/ELINGAP-7545/lab04-grupo-6/blob/master/imagenes/SIMULACION%20ARQUI.jpg)
 
 ## Diagrama Estructural 
 
