@@ -215,6 +215,47 @@ end
 
 endmodule
 ```
+# TESTBENCH VISUALIZACIÓN DINAMICA 4 DISPLAY´S
+
+```verilog
+module testbench; // nombre del modulo testbench
+
+	// Inputs
+	reg [15:0] num; // declaramos registro de entrada de número hexadecimal
+	reg clk2;       // declaramos registro de reloj 2 para sincronización de los anodos con la visualización
+	reg rst;        // declaramos registro de reset
+
+	// Outputs
+	wire [0:6] sseg;  //declaramos el conector de salida de los ánodos de los 7 segmentos
+	wire [3:0] an;    //declaramos el conector de salida del ánodo para la activación de los 4 display´s 
+
+	// Instantiate the Unit Under Test (UUT)
+	display uut (
+	//	.num(num), //instanciamos el modulo display y declaramos la variable num y el puerto que traeremos
+		.clk(clk2), // declaramos la variable de reloj y el puerto que traeremos
+		.sseg(sseg), //declaramos la variable los siete segmentos y el puerto que traeremos
+		.an(an), // declaramos la variable del ánodo para los display y el puerto que traeremos
+		.rst(rst) //declaramos la variable de reset y el puerto que traeremos
+	);
+
+	initial begin
+		// Initialize Inputs // declaramos las entradas de inicio 
+		clk2= 0;             // reloj en "0"
+		rst = 1;             // reset en "1"
+		#10 rst =0;          // esperamos 10ns y ponemos reset en "0"
+		
+		num = 16'h4321; #10;  // cargamos el número que queremos visualizar
+        
+
+	end
+      
+
+	always #1 clk2 = ~clk2;  // nos aseguramos que el reloj solo se active en pulsos de subida posedge
+	
+endmodule
+
+```
+
 
 # Entregables
 
